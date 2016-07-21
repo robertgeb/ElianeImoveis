@@ -1,0 +1,21 @@
+<h1>Home</h1>
+<div id="listaImoveis" ng-controller="ImoveisListaController">
+  <ul>
+    <li class="row imovelItem" ng-repeat="imov in imoveis">
+      <div class="three columns">
+        <img class="u-max-full-width" src="app/data/{{(imov.id < 10? '0' + imov.id: imov.id)}}/{{imov.images[0]}}.jpg"/>
+      </div>
+      <div class="six columns">
+        <h3>{{(imov.intencao === 'venda')? "Vende-se" : "Aluga-se"}}</h3>
+        <h4>Valor: <small>{{imov.valor}}</small> </h4>
+        <p>
+
+        </p>
+        <h4>Descrição: </h4>
+        <p>
+          {{imov.desc}}
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
