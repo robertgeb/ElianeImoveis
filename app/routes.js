@@ -10,6 +10,10 @@
             controller: 'ImoveisListaController',
             templateUrl: 'app/view/index.html'
           }).
+          when('/imovel/:imovelID', {
+            templateUrl: 'app/view/single.html',
+            controller: 'ImovelController'
+          }).
           when('/casas', {
             template: 'varias casas'
           }).

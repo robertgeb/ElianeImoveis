@@ -1,5 +1,5 @@
 <h1>Home</h1>
-<div id="listaImoveis" class="row" ng-controller="ImoveisListaController">
+<div id="listaImoveis" class="row">
   <ul class="nine columns">
     <li class="row imovelItem" ng-repeat="imov in imoveis" ng-if="imov.valor < valorMax && imov.valor > valorMin">
       <div class="four columns">
@@ -18,7 +18,7 @@
       </div>
     </li>
   </ul>
-  <div class="three columns">
+  <div id="menuBusca" class="three columns">
     <h3>Busca</h3>
     <label for="valorMax"> Valor máximo <input id="valorMax" type="text" name="valorMax" value="" ng-model=valorMax></label>
     <label for="valorMin"> Valor minimo <input id="valorMin" type="text" name="valorMin" value="" ng-model=valorMin></label>
