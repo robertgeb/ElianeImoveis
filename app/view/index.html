@@ -1,21 +1,26 @@
 <h1>Home</h1>
-<div id="listaImoveis" ng-controller="ImoveisListaController">
-  <ul>
-    <li class="row imovelItem" ng-repeat="imov in imoveis">
-      <div class="three columns">
+<div id="listaImoveis" class="row" ng-controller="ImoveisListaController">
+  <ul class="nine columns">
+    <li class="row imovelItem" ng-repeat="imov in imoveis" ng-if="imov.valor < valorMax && imov.valor > valorMin">
+      <div class="four columns">
         <img class="u-max-full-width" src="app/data/{{(imov.id < 10? '0' + imov.id: imov.id)}}/{{imov.images[0]}}.jpg"/>
       </div>
-      <div class="six columns">
+      <div class="eight columns">
         <h3>{{(imov.intencao === 'venda')? "Vende-se" : "Aluga-se"}}</h3>
-        <h4>Valor: <small>{{imov.valor}}</small> </h4>
+        <h4>Valor <small>R$ {{imov.valor}}.00</small> </h4>
         <p>
 
         </p>
-        <h4>Descrição: </h4>
+        <h4>Descrição </h4>
         <p>
           {{imov.desc}}
         </p>
       </div>
     </li>
   </ul>
+  <div class="three columns">
+    <h3>Busca</h3>
+    <label for="valorMax"> Valor máximo <input id="valorMax" type="text" name="valorMax" value="" ng-model=valorMax></label>
+    <label for="valorMin"> Valor minimo <input id="valorMin" type="text" name="valorMin" value="" ng-model=valorMin></label>
+  </div>
 </div>
