@@ -14,8 +14,9 @@
             templateUrl: 'app/view/single.html',
             controller: 'ImovelController'
           }).
-          when('/casas', {
-            template: 'varias casas'
+          when('/contato', {
+            templateUrl: 'app/view/contato.html',
+            controller: 'ContatoController'
           }).
           otherwise('/');
       }

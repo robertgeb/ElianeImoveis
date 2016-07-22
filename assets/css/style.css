@@ -44,6 +44,12 @@ h1 > small
 #menuNav > li > h3
 {
   margin-bottom: 0;
+  font-size: 1.5em;
+}
+
+#menuNav > li > h3.atual
+{
+  font-size: 2em;
 }
 
 #menuNav > li > h3 > a
