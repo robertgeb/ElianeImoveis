@@ -3,7 +3,12 @@
     "id": 1,
     "intencao": "venda",
     "valor": 63000,
+    "tipo": "casa",
     "desc": "Casa com um ótimo quintal, toda bonitinha.\n Um quarto, sala, cozinha, banheiro.\n Boas possibilidades de expansão.",
+    "quartos": 2,
+    "tamanho": 100,
+    "largura": 10,
+    "comprimento": 10,
     "images": [
       "sala",
       "lazer",
@@ -27,7 +32,7 @@
       "quarto",
       "loja",
       "cozinha",
-      "2quarto",
+      "quarto2",
       "banheiro",
       "canil"
     ]

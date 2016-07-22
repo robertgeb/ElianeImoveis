@@ -1,4 +1,46 @@
-<h1>Imovel</h1>
-<div class="row">
-  {{imovel.valor}}
+<h1>Eliane Imóveis</h1>
+<menu-nav></menu-nav>
+<galeria-imovel></galeria-imovel>
+<div class="row" id="imovelDetalhes">
+  <div class="offset-by-three six columns">
+    <h3>Detalhes</h3>
+    <table class="u-pull-left">
+      <tr>
+        <td>
+          Valor
+        </td>
+        <td>
+          R$ {{imovel.valor}}.00
+        </td>
+      </tr>
+      <tr ng-show="imovel.tamanho">
+        <td>
+          Tamanho
+        </td>
+        <td>
+          {{imovel.tamanho}} m²
+        </td>
+      </tr>
+      <tr ng-show="imovel.quartos">
+        <td>
+          Quartos
+        </td>
+        <td>
+          {{imovel.quartos}}
+        </td>
+      </tr>
+      <tr  ng-show="imovel.banheiros">
+        <td>
+          Banheiros
+        </td>
+        <td>
+          imovel.banheiros
+        </td>
+      </tr>
+    </table>
+    <p>
+      {{imovel.desc}}
+    </p>
+  </div>
+
 </div>

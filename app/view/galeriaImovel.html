@@ -1,0 +1,16 @@
+<div id="galeriaImovel" class="row">
+  <ul>
+    <li class="two columns btnGaleria" >
+      <img src="assets/images/navigate_before.svg" ng-click="retrocederGaleria()"/>
+    </li>
+    <li ng-repeat="foto in imovel.images | filter: filtroGaleria" class="two columns" ng-click="showImage(foto)">
+      <img class="u-max-full-width" src="app/data/{{(imovel.id < 10? '0' + imovel.id: imovel.id)}}/{{foto}}.jpg"/>
+      <div class="nomeFoto">
+        <span>{{legenda(foto)}}</span>
+      </div>
+    </li>
+    <li class="two columns btnGaleria">
+        <img src="assets/images/navigate_next.svg" ng-click="avancarGaleria()"/>
+    </li>
+  </ul>
+</div>
