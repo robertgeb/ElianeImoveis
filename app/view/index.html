@@ -1,7 +1,8 @@
-<h1>Home</h1>
+<h1>Eliane Imóveis</h1>
+<menu-nav></menu-nav>
 <div id="listaImoveis" class="row">
   <ul class="nine columns">
-    <li class="row imovelItem" ng-repeat="imov in imoveis" ng-if="imov.valor < valorMax && imov.valor > valorMin">
+    <li class="row imovelItem" ng-repeat="imov in imoveis" ng-if="imov.valor < valorMax && imov.valor > valorMin" ng-click="go('/imovel/' + imov.id)">
       <div class="four columns">
         <img class="u-max-full-width" src="app/data/{{(imov.id < 10? '0' + imov.id: imov.id)}}/{{imov.images[0]}}.jpg"/>
       </div>
@@ -20,7 +21,28 @@
   </ul>
   <div id="menuBusca" class="three columns">
     <h3>Busca</h3>
-    <label for="valorMax"> Valor máximo <input id="valorMax" type="text" name="valorMax" value="" ng-model=valorMax></label>
-    <label for="valorMin"> Valor minimo <input id="valorMin" type="text" name="valorMin" value="" ng-model=valorMin></label>
+    <label for="valorMax">
+       Valor máximo
+       <input id="valorMax" type="text" name="valorMax" value="" ng-model=valorMax>
+     </label>
+    <label for="valorMin">
+       Valor minimo
+       <input id="valorMin" type="text" name="valorMin" value="" ng-model=valorMin>
+     </label>
+    <label>
+      <input type="checkbox" >
+      <span>Comprar</span>
+    </label>
+    <label>
+      <input type="checkbox" >
+      <span>Alugar</span>
+    </label>
+    <label for="tipoImovel">Tipo</label>
+      <select class="u-max-full-width" id="tipoImovel">
+        <option value="qualquer">Qualquer</option>
+        <option value="terrenos">Terrenos</option>
+        <option value="casas">Casas</option>
+        <option value="apartamentos">Apartamentos</option>
+      </select>
   </div>
 </div>
