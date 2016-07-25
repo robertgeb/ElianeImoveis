@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eliane Imoveis</title>
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/skeleton.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+  </head>
+  <body ng-app="elianeimoveisadm">
+
+    <div class="container" ng-controller="ImovelController">
+      <div class="row" ng-if="output.show">
+        <div class="twelve columns">
+          <h1>Resposta:</h1>
+          <pre>{{output.message | json}}</pre>
+        </div>
+      </div>
+      <form class="imovelForm">
+        <ul style="list-style: none;" class="row">
+          <h1>Nova casa</h1>
+          <h5>Selecione as imagens</h5>
+          <li class="two columns" ng-repeat="image in imagesFiles">
+            <input-image></input-image>
+            <span ng-if="!$last">Legenda da foto</span>
+            <input ng-if="!$last" class="u-max-full-width" type="text" ng-model="imovel.images[$index]">
+          </li>
+        </ul>
+        <div class="row">
+          <table class="twelve columns">
+            <tr>
+              <td>
+                Intenção:
+              </td>
+              <td>
+                <select ng-model="imovel.intencao">
+                  <option value="venda">Vender</option>
+                  <option value="aluga">Alugar</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Tipo imovel:
+              </td>
+              <td>
+                <select ng-model="imovel.tipo">
+                  <option value="casa">Casa</option>
+                  <option value="apartamento">Apartamento</option>
+                  <option value="loja">Loja</option>
+                  <option value="terreno">Terreno</option>
+                  <option value="sitio">Sitio</option>
+                  <option value="area">Área</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Lançamento:
+              </td>
+              <td>
+                <input type="checkbox" ng-model="imovel.lancamento">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Valor:
+              </td>
+              <td>
+                <span style="position:absolute; margin-left: -2em; margin-top:0.5em;">R$</span>
+                <input type="text" ng-model="imovel.valor">
+                <span>.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Descrição:
+              </td>
+              <td>
+                <textarea ng-model="imovel.desc"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Área Construida:
+              </td>
+              <td>
+                <input type="text" ng-model="imovel.areaconst">
+                <span>m²</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Área total:
+              </td>
+              <td>
+                <input type="text" ng-model="imovel.area">
+                <span>m²</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Quartos:
+              </td>
+              <td>
+                <input type="text" ng-model="imovel.quartos">
+              </td>
+            </tr>
+            <tr ng-if="imovel.tipo === 'casa' || imovel.tipo === 'apartamento'">
+              <td>Tipo:</td>
+              <td ng-if="imovel.tipo === 'casa'">
+                <select ng-model="imovel.tipocasa">
+                  <option value="rua">Rua publica</option>
+                  <option value="vila">Vila</option>
+                  <option value="condominio">Condominio</option>
+                </select>
+
+              </td>
+              <td ng-if="imovel.tipo === 'apartamento'">
+                <select ng-model="imovel.tipoapartamento">
+                  <option value="padrao">Padrão</option>
+                  <option value="cobertura">Cobertura</option>
+                  <option value="duplex">Duplex</option>
+                  <option value="kitchnette">Kitchenette</option>
+                  <option value="loft">Loft</option>
+                </select>
+              </td>
+            </tr>
+            <tr ng-if="imovel.tipo === 'apartamento' || imovel.tipocasa === 'condominio'">
+              <td>
+                Preço condominio
+              </td>
+              <td>
+                <span style="position:absolute; margin-left: -2em; margin-top:0.5em;">R$</span>
+                <input type="text" ng-model="imovel.precocondominio">
+                <span>.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Caracteristicas:
+              </td>
+              <td>
+                <ul style="list-style:none;">
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Ar-condicionado')">
+                    Ar-condicionado
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Piscina')">
+                    Piscina
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Armario imbutido')"> Armario imbutido
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Varanda')"> Varanda
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Área de serviço')"> Área de serviço
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Churrasqueira')"> Churrasqueira
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Quarto de empregada')"> Quarto de Empregada
+                  </li>
+                  <li>
+                    <input type="checkbox" ng-click="addCaract('Porteiro')"> Porteiro
+                  </li>
+                  <li ng-repeat="caract in caracteristicasExtras">
+                    <input type="checkbox" ng-click="addCaract(caract)">
+                    {{caract}}
+                  </li>
+                  <li>
+                    <input type="text" ng-model="caractAux">
+                    <input type="button" value="Adicionar" ng-click="addCaractExtra(caractAux)">
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Vagas na garagem
+              </td>
+              <td>
+                <input type="text" ng-model="imovel.vagasgaragem">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                CEP
+              </td>
+              <td>
+                <input type="text" ng-model="imovel.cep">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Localização
+              </td>
+              <td>
+                <input type="text" ng-model="imovel.localizacao">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="offset-by-three three columns">
+            <input class="button" type="button" ng-click="showForm()" value="Adicionar casa">
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="assets/lib/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/ImovelAdmController.js"></script>
+    <script src="app/services/GithubFactory.js"></script>
+    <script src="app/directives/inputImageDirective.js"></script>
+  </body>
+</html>
