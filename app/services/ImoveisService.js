@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('elianeimoveis').service( 'Imoveis', [ '$rootScope' , '$http', '$q', Imoveis]);
+  angular.module('elianeimoveis').service( 'Imoveis', ['$http', Imoveis]);
 
-  function Imoveis($rootScope, $http, $q) {
+  function Imoveis($http) {
     var imoveis = [];
     var getImoveisPromise = $http.get('app/data/imoveis.json');
     getImoveisPromise.then(function(data) {
