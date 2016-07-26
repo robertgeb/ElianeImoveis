@@ -53,7 +53,7 @@
         return false;
       }
 
-      GithubFactory.createImovelData($scope.imovel, 'teste4/'+$scope.imovel.id+'.json', senha)
+      GithubFactory.updateImoveisData($scope.imovel, $scope.imovel.id, senha)
         .then(function (data) {
           console.log('foi');
           console.log(data);
@@ -67,7 +67,7 @@
 
       function createImages() {
         for (var i = 0; i < $scope.imovel.images.length; i++) {
-          let path = 'teste4/' + $scope.imovel.images[i] + '.jpg';
+          let path = $scope.imovel.id+'/' + $scope.imovel.images[i] + '.jpg';
           let file = $scope.imagesFiles[i];
           GithubFactory.insertImage(file.split(/base64,/)[1], path, senha)
             .then(function (data) {

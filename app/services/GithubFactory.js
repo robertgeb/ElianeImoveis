@@ -25,28 +25,40 @@
       });
     }
 
-    function createImovelData(data, path, senha) {
+    function updateImoveisData(imovelData, id, senha) {
       return $http({
-        method: 'PUT',
-        url: 'https://api.github.com/repos/robertgeb/ElianeImoveis/contents/app/data/'+path,
+        method: 'GET',
+        url: 'https://api.github.com/repos/robertgeb/ElianeImoveis/contents/app/data/imoveis.json',
         headers: {
           Authorization: 'basic '+btoa('robertgeb:'+senha)
-        },
-        data: {
-          message: 'Imovel data file '+path,
-          committer: {
-            name: 'Robert Gebhardt',
-            email: 'robert.gol.jr@gmail.com'
-          },
-          content: btoa(JSON.stringify(data)),
-          branch: 'dev'
         }
+      }).then(function (data) {
+        var sha = data.data.sha;
+        var imoveis = JSON.parse(atob(data.data.content));
+        imoveis.push(imovelData);
+        return $http({
+          method: 'PUT',
+          url: 'https://api.github.com/repos/robertgeb/ElianeImoveis/contents/app/data/imoveis.json',
+          headers: {
+            Authorization: 'basic '+btoa('robertgeb:'+senha)
+          },
+          data: {
+            message: 'Imovel data '+id,
+            committer: {
+              name: 'Robert Gebhardt',
+              email: 'robert.gol.jr@gmail.com'
+            },
+            content: btoa(JSON.stringify(imoveis)),
+            sha: sha,
+            branch: 'dev'
+          }
+        });
       });
     }
 
     return {
       insertImage: insertImage,
-      createImovelData: createImovelData
+      updateImoveisData: updateImoveisData
     }
   }
 
